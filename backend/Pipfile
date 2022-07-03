@@ -14,8 +14,11 @@ psycopg2 = "*"
 numpy = "*"
 pillow = "*"
 pandas = "*"
+python-dotenv = "*"
+ipython = "*"
 
 [dev-packages]
+autopep8 = "*"
 
 [requires]
 python_version = "3.10"
