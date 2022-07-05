@@ -16,6 +16,8 @@ pillow = "*"
 pandas = "*"
 python-dotenv = "*"
 ipython = "*"
+flake8 = "*"
+black = "*"
 
 [dev-packages]
 autopep8 = "*"
