@@ -8,16 +8,19 @@ from dotenv import load_dotenv, dotenv_values
 load_dotenv()
 
 ENVIRONMENT_VARIABLE_TYPE_PARSERS = {
-    'bool': bool,
-    'int': int,
-    'float': float,
-    'str': str,
-    'list': eval,
-    'dict': eval,
-    'eval': eval,
+    "bool": bool,
+    "int": int,
+    "float": float,
+    "str": str,
+    "tuple": eval,
+    "list": eval,
+    "set": eval,
+    "dict": eval,
+    "eval": eval,
 }
 ENVIRONMENT_VARIABLE_TYPE_REGEX = re.compile(
-    r"^<(?P<loader_function>\w+?)>(?P<value>.*)$", re.DOTALL)
+    r"^<(?P<loader_function>\w+?)>(?P<value>.*)$", re.DOTALL
+)
 
 
 def __parse_environment_variable(value: str, raise_parse_error=True):
@@ -26,13 +29,12 @@ def __parse_environment_variable(value: str, raise_parse_error=True):
         # No match found return original value
         return value
 
-    parser = ENVIRONMENT_VARIABLE_TYPE_PARSERS.get(
-        match.group('loader_function'), None)
+    parser = ENVIRONMENT_VARIABLE_TYPE_PARSERS.get(match.group("loader_function"), None)
     if parser == None:
         # Mentioned parser does not exist raise error
         raise Exception(f"{parser} parser does not exist!")
 
-    value_to_parse = match.group('value')
+    value_to_parse = match.group("value")
 
     try:
         return parser(value_to_parse)
@@ -55,8 +57,9 @@ def __get_environment_variable_value(key: str, default=None):
     # print(key, type(return_value), return_value)
     return return_value
 
+
 # print(dotenv_values())
 
 
-DEBUG = __get_environment_variable_value('DEBUG', True)
-SECRET_KEY = __get_environment_variable_value('SECRET_KEY')
+DEBUG = __get_environment_variable_value("DEBUG", True)
+SECRET_KEY = __get_environment_variable_value("SECRET_KEY")
