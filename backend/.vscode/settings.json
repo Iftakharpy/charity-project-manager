@@ -1,0 +1,5 @@
+{
+    "python.defaultInterpreterPath": "~/.local/share/virtualenvs/backend-l_PM2mZV/bin/python",
+    "workbench.localHistory.enabled": false,
+    "python.formatting.provider": "black"
+}
