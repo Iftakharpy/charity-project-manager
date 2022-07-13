@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from collections import namedtuple
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -136,3 +137,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'users.CustomUserModel'
+
+
+IMAGE_SIZE = namedtuple('Image Size', ['width', 'height'])
+IMAGE_SIZES = {
+    'banner': IMAGE_SIZE(1500, 400),
+    'person_profile': IMAGE_SIZE(300, 300)
+}
