@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # project apps
+    # Third party apps
+    'rest_framework',
+
+    # Project apps
     'users',
 ]
 
@@ -47,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -137,9 +140,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'users.CustomUserModel'
+LOGIN_REDIRECT_URL = 'users:details'
+LOGOUT_REDIRECT_URL = 'users:login'
+LOGIN_URL = 'users:login'
+LOGOUT_URL = 'users:logout'
 
 
-IMAGE_SIZE = namedtuple('Image Size', ['width', 'height'])
+
+IMAGE_SIZE = namedtuple('ImageSize', ['width', 'height'])
 IMAGE_SIZES = {
     'banner': IMAGE_SIZE(1500, 400),
     'person_profile': IMAGE_SIZE(300, 300)
