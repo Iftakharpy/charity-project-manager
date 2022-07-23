@@ -1,11 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
-from django.conf import settings
 from django.utils import timezone
-
-from projects.models import Projects
-from users.models import CustomUserModel
 
 
 class Beneficiaries(models.Model):
@@ -14,22 +9,11 @@ class Beneficiaries(models.Model):
     date_of_birth = models.DateField()
     phone_number = models.CharField(max_length=20)
 
-    display_image = models.ImageField(height_field=settings.IMAGE_SIZES['person_profile'].height, width_field=settings.IMAGE_SIZES['person_profile'].width, blank=True)
+    profile_picture = models.ImageField(_("Profile Picture"), blank=True, null=True)
     description = models.TextField(blank=True)
 
     last_updated_at = models.DateTimeField(auto_now=True, default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True, default=timezone.now)
-
-
-class ProjectBeneficiaries(models.Model):
-    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
-    beneficiary = models.ForeignKey(Beneficiaries, on_delete=models.CASCADE)
-    benefactor = models.ForeignKey(CustomUserModel, on_delete=models.CASCADE)
-
-    benefit_receive_date_time = models.DateTimeField(null=True, blank=True)
-    beneficiary_join_date_time = models.DateTimeField(auto_now_add=True, default=timezone.now)
-
-
 
 
 class District(models.Model):
