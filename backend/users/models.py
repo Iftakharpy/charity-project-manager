@@ -19,6 +19,7 @@ class CustomUserModel(AbstractUser):
         _("Email"), unique=True, blank=False, null=False, db_index=True
     )
     phone_number = models.CharField(_("Phone Number"), max_length=32)
+    profile_picture = models.ImageField(_("Profile Picture"), blank=True, null=True)
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
