@@ -11,7 +11,6 @@ class CustomUserManager(BaseUserManager):
         """
         Create and save a User with the given email and password.
         """
-        print(email, password, extra_fields)
         if not email:
             raise ValueError(_('The Email must be set'))
         email = self.normalize_email(email)
