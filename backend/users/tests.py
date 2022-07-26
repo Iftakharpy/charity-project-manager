@@ -2,6 +2,7 @@ from urllib import response
 from urllib.parse import urlparse
 
 from django.test import TestCase, Client
+from rest_framework import status
 
 from django.urls import reverse
 from django.contrib.auth import get_user_model
@@ -81,7 +82,7 @@ class UsersViewsTests(TestCase):
     # user_login view tests
     def test_user_login_with_empty_credentials(self):
         response = self.login_user('', '')
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         data = response.json()
         expected_data = {
@@ -107,18 +108,18 @@ class UsersViewsTests(TestCase):
                              'errors': {'password': ['Invalid credentials!']}
                             }
 
-            self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
             self.assertDictEqual(data, expected_data)
 
     def test_user_login_with_correct_credentials_and_disallowed_http_method(self):
         response = self.client.put(path=reverse('users:login'), data={
                                    'username': self.email, 'password': self.password})
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_user_login_with_correct_credentials(self):
         response = self.login_user()
         self.user.refresh_from_db()
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         data = response.json()
         expected_data = {'success': True,
@@ -131,18 +132,18 @@ class UsersViewsTests(TestCase):
         self.client.logout()
         response = self.client.get(path=reverse('users:logout'))
 
-        self.assertGreaterEqual(response.status_code, 300)
-        self.assertLessEqual(response.status_code, 399)
+
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
         self.assertEqual(urlparse(response.url).path, reverse('users:login'))
 
     def test_user_logout_with_disallowed_http_method(self):
         response = self.client.post(path=reverse('users:logout'))
-        self.assertGreaterEqual(response.status_code, 405)
+        self.assertGreaterEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_user_logout_when_logged_in(self):
         self.client.force_login(self.user)
         response = self.client.get(path=reverse('users:logout'))
-        self.assertGreaterEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         data = response.json()
         expected_data = {'success': True}
@@ -151,35 +152,33 @@ class UsersViewsTests(TestCase):
         # try to fetch user_details
         response = self.client.get(path=reverse('users:details'))
         
-        self.assertGreaterEqual(response.status_code, 300)
-        self.assertLessEqual(response.status_code, 399)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
         self.assertEqual(urlparse(response.url).path, reverse('users:login'))
 
 
     # user_details view tests
     def test_user_details_with_disallowed_method(self):
         response = self.client.post(reverse('users:details'))
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_user_details_without_authorization(self):
         self.client.logout()
 
         response = self.client.get(reverse('users:details'))
-
-        self.assertGreaterEqual(response.status_code, 300)
-        self.assertLessEqual(response.status_code, 399)
+        
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
         self.assertEqual(urlparse(response.url).path, reverse('users:login'))
 
     def test_user_details_with_incorrect_http_method(self):
         response = self.client.post(reverse('users:details'))
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_user_details_with_authorization_and_correct_http_method(self):
         self.client.force_login(self.user)
         self.user.refresh_from_db()
 
         response = self.client.get(reverse('users:details'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         data = response.json()
         expected_data = {
@@ -193,25 +192,24 @@ class UsersViewsTests(TestCase):
     def test_user_change_password_with_disallowed_http_methods_and_unauthorized(self):
         self.client.logout()
         response = self.client.get(reverse('users:change_password'))
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_user_change_password_with_disallowed_http_methods_and_authorized(self):
         self.client.force_login(self.user)
         response = self.client.get(reverse('users:change_password'))
-        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
     
     def test_user_change_password_without_authorization(self):
         self.client.logout()
         response = self.client.post(reverse('users:change_password'))
 
-        self.assertGreaterEqual(response.status_code, 300)
-        self.assertLessEqual(response.status_code, 399)
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
         self.assertEqual(urlparse(response.url).path, reverse('users:login'))
     
     def test_user_change_password_without_any_data(self):
         self.client.force_login(self.user)
         response = self.client.post(reverse('users:change_password'))
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
    
     def test_user_change_password_with_different_password(self):
         self.client.force_login(self.user)
@@ -224,7 +222,7 @@ class UsersViewsTests(TestCase):
             response = self.client.post(
                 path=reverse('users:change_password'),
                 data={'password1': password1, 'password2': password2})
-            self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
             data = response.json()
             expected_structure = {'success': False, 'help': {}, 'errors': {}}
@@ -247,7 +245,7 @@ class UsersViewsTests(TestCase):
             response = self.client.post(
                 path=reverse('users:change_password'),
                 data={'password1': weak_password, 'password2': weak_password})
-            self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
             data = response.json()
             expected_structure = {'success': False, 'help': {}, 'errors': {}}
@@ -268,7 +266,7 @@ class UsersViewsTests(TestCase):
             response = self.client.post(
                 path=reverse('users:change_password'),
                 data={'password1': strong_password, 'password2': strong_password})
-            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.status_code, status.HTTP_200_OK)
 
             data = response.json()
             expected_data = {'success': True}
