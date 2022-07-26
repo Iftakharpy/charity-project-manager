@@ -3,16 +3,17 @@ from django.http import JsonResponse
 from django.http.request import HttpRequest
 from django.conf import settings
 
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.password_validation import get_password_validators, validate_password, password_changed, password_validators_help_texts
 
-from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_http_methods
-
+from rest_framework import mixins, viewsets
 
 from .models import CustomUserModel
 from .serializers import CustomUserSerializer
+from .permissions import IsAdminAndOwnerEditOrAuthenticatedReadOnly
 
 
 
@@ -132,3 +133,14 @@ def user_change_password(request):
     return JsonResponse({
         'success': True,
     })
+
+
+class UserRetrieveUpdateViewSet(
+        viewsets.GenericViewSet,
+        mixins.ListModelMixin,
+        mixins.RetrieveModelMixin,
+        mixins.UpdateModelMixin
+    ):
+    queryset = CustomUserModel.objects.all()
+    serializer_class = CustomUserSerializer
+    permission_classes = [IsAdminAndOwnerEditOrAuthenticatedReadOnly]
