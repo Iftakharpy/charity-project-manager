@@ -20,10 +20,12 @@ from django.conf import settings
 
 from rest_framework import routers
 
-from users.views import UserRetrieveAndUpdateAPI
+from users.views import UserRetrieveUpdateViewSet
+
 
 router = routers.DefaultRouter()
-router.register('users', UserRetrieveAndUpdateAPI)
+router.register('users', UserRetrieveUpdateViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
