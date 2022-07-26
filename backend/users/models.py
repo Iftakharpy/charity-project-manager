@@ -18,7 +18,7 @@ class CustomUserModel(AbstractUser):
     email = models.EmailField(
         _("Email"), unique=True, blank=False, null=False, db_index=True
     )
-    phone_number = models.CharField(_("Phone Number"), max_length=32)
+    phone_number = models.CharField(_("Phone Number"), blank=False, null=True, max_length=32)
     profile_picture = models.ImageField(_("Profile Picture"), blank=True, null=True)
 
     EMAIL_FIELD = "email"
@@ -29,3 +29,7 @@ class CustomUserModel(AbstractUser):
 
     def __str__(self) -> str:
         return f"{self.email}"
+
+    @property
+    def owner(self):
+        return self
