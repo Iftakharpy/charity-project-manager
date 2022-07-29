@@ -13,7 +13,7 @@ class Projects(models.Model):
     banner_image = models.ImageField(blank=True, null=True)
 
     total_budget = models.DecimalField(max_digits=24, decimal_places=4)
-    total_budget = models.DecimalField(max_digits=24, decimal_places=4)
+    budget_per_beneficiary = models.DecimalField(max_digits=24, decimal_places=4)
 
     start_date = models.DateField()
     end_date = models.DateField()
