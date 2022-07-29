@@ -9,7 +9,8 @@ class BeneficiariesViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = Beneficiaries.objects.all()
     serializer_class = BeneficiarySerializer
@@ -21,7 +22,8 @@ class DistrictViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
@@ -33,7 +35,8 @@ class ThanaViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = Thana.objects.all()
     serializer_class = ThanaSerializer
@@ -45,7 +48,8 @@ class PostCodeViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = PostCode.objects.all()
     serializer_class = PostCodeSerializer
@@ -57,7 +61,8 @@ class WardViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = Ward.objects.all()
     serializer_class = WardSerializer
@@ -69,7 +74,8 @@ class VillageViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = Village.objects.all()
     serializer_class = VillageSerializer
@@ -81,7 +87,8 @@ class BeneficiaryAddressViewSet(
         mixins.ListModelMixin,
         mixins.RetrieveModelMixin,
         mixins.CreateModelMixin,
-        mixins.UpdateModelMixin
+        mixins.UpdateModelMixin,
+        mixins.DestroyModelMixin
     ):
     queryset = BeneficiaryAddress.objects.all()
     serializer_class = BeneficiaryAddressSerializer

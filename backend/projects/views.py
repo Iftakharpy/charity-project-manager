@@ -22,7 +22,8 @@ class ProjectCoordinatorsViewSet(
     viewsets.GenericViewSet,
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
-    mixins.CreateModelMixin
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin
 ):
     queryset = ProjectCoordinators.objects.all()
     serializer_class = ProjectCoordinatorSerializer
@@ -33,7 +34,8 @@ class ProjectBeneficiariesViewSet(
     viewsets.GenericViewSet,
     mixins.ListModelMixin,
     mixins.RetrieveModelMixin,
-    mixins.CreateModelMixin
+    mixins.CreateModelMixin,
+    mixins.DestroyModelMixin
 ):
     queryset = ProjectBeneficiaries.objects.all()
     serializer_class = ProjectBeneficiarySerializer
