@@ -75,7 +75,7 @@ class BeneficiaryAddress(models.Model):
         District, on_delete=models.CASCADE, null=True, blank=True)
     thana = models.ForeignKey(
         Thana, on_delete=models.CASCADE, null=True, blank=True)
-    post_office = models.ForeignKey(
+    post_code = models.ForeignKey(
         PostCode, on_delete=models.CASCADE, null=True, blank=True)
     ward = models.ForeignKey(
         Ward, on_delete=models.CASCADE, null=True, blank=True)
