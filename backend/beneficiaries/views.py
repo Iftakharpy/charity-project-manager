@@ -2,6 +2,7 @@ from rest_framework import viewsets, mixins
 
 from .models import *
 from .serializers import *
+from .permissions import IsSuperUserOrStaffEditAndAuthenticatedReadOnly
 
 
 class BeneficiariesViewSet(
@@ -14,7 +15,7 @@ class BeneficiariesViewSet(
     ):
     queryset = Beneficiaries.objects.all()
     serializer_class = BeneficiarySerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
 
 
 class DistrictViewSet(
@@ -27,7 +28,7 @@ class DistrictViewSet(
     ):
     queryset = District.objects.all()
     serializer_class = DistrictSerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
 
 
 class ThanaViewSet(
@@ -40,7 +41,7 @@ class ThanaViewSet(
     ):
     queryset = Thana.objects.all()
     serializer_class = ThanaSerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
 
 
 class PostCodeViewSet(
@@ -53,7 +54,7 @@ class PostCodeViewSet(
     ):
     queryset = PostCode.objects.all()
     serializer_class = PostCodeSerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
 
 
 class WardViewSet(
@@ -66,7 +67,7 @@ class WardViewSet(
     ):
     queryset = Ward.objects.all()
     serializer_class = WardSerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
 
 
 class VillageViewSet(
@@ -79,7 +80,7 @@ class VillageViewSet(
     ):
     queryset = Village.objects.all()
     serializer_class = VillageSerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
 
 
 class BeneficiaryAddressViewSet(
@@ -92,4 +93,4 @@ class BeneficiaryAddressViewSet(
     ):
     queryset = BeneficiaryAddress.objects.all()
     serializer_class = BeneficiaryAddressSerializer
-    permission_classes = []
+    permission_classes = [IsSuperUserOrStaffEditAndAuthenticatedReadOnly]
