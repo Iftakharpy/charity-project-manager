@@ -13,7 +13,7 @@ from rest_framework import mixins, viewsets
 
 from .models import CustomUserModel
 from .serializers import CustomUserSerializer
-from .permissions import IsAdminAndOwnerEditOrAuthenticatedReadOnly
+from .permissions import IsSuperuserAndOwnerEditOrAuthenticatedReadOnly
 
 
 
@@ -143,4 +143,4 @@ class UserRetrieveUpdateViewSet(
     ):
     queryset = CustomUserModel.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAdminAndOwnerEditOrAuthenticatedReadOnly]
+    permission_classes = [IsSuperuserAndOwnerEditOrAuthenticatedReadOnly]

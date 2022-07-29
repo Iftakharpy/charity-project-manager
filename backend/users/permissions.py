@@ -1,9 +1,9 @@
 from rest_framework import permissions
 
 
-class IsAdminAndOwnerEditOrAuthenticatedReadOnly(permissions.BasePermission):
+class IsSuperuserAndOwnerEditOrAuthenticatedReadOnly(permissions.BasePermission):
     """
-    Custom permission to only allow owners of an object or admins to edit it.
+    Custom permission to only allow owners of an object or superusers to edit it.
     But other authenticated users can read it.
     """
 
@@ -14,6 +14,6 @@ class IsAdminAndOwnerEditOrAuthenticatedReadOnly(permissions.BasePermission):
             return True
 
         if request.user.is_authenticated:
-            # Write permissions are only allowed to the owner of the snippet or admins.
-            return obj.owner == request.user or ((request.user.is_admin or request.user.is_staff) and request.user.is_active)
+            # Write permissions are only allowed to the owner of the snippet or superusers.
+            return obj.owner == request.user or ((request.user.is_superuser or request.user.is_staff) and request.user.is_active)
         return False
