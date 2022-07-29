@@ -21,10 +21,14 @@ from django.conf import settings
 from rest_framework import routers
 
 from users.views import UserRetrieveUpdateViewSet
+from projects.views import ProjectsViewSet, ProjectCoordinatorsViewSet, ProjectBeneficiariesViewSet
 
 
 router = routers.DefaultRouter()
 router.register('users', UserRetrieveUpdateViewSet)
+router.register('projects', ProjectsViewSet)
+router.register('project_coordinators', ProjectCoordinatorsViewSet)
+router.register('projects_beneficiaries', ProjectBeneficiariesViewSet)
 
 
 urlpatterns = [
