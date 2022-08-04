@@ -18,6 +18,7 @@ python-dotenv = "*"
 ipython = "*"
 flake8 = "*"
 black = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 autopep8 = "*"
