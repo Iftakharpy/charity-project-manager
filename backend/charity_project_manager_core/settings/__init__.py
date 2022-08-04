@@ -16,5 +16,6 @@ if DEBUG:
 else:
     from .prod import *
 
-# Parse settings of .env file using env.py
-from .env import *
+if PREVENT_DOTENV_SETTINGS_MODIFICATIONS:
+    # Parse settings of .env file using env.py
+    from .load_dotenv import *
