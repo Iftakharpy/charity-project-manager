@@ -18,4 +18,4 @@ else:
 
 if PREVENT_DOTENV_SETTINGS_MODIFICATIONS:
     # Parse settings of .env file using env.py
-    from .load_dotenv import *
+    from .loaded_dotenv import *

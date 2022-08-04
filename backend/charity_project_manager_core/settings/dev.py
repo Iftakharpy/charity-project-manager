@@ -1,5 +1,5 @@
 from .base import *
-from .env import *
+from .loaded_dotenv import *
 
 
 ALLOWED_HOSTS = ['*']
