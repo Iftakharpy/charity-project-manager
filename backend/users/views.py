@@ -19,6 +19,7 @@ from .permissions import IsSuperuserAndOwnerEditOrAuthenticatedReadOnly
 
 @require_http_methods(['POST'])
 def user_login(request: HttpRequest):
+    """Allows data parsing only for Content-Type: 'multipart/form-data'"""
     if request.user.is_authenticated:
         logout(request)
 
@@ -54,7 +55,6 @@ def user_login(request: HttpRequest):
 
 
 @require_http_methods(['GET'])
-@login_required
 def user_logout(request):
     logout(request)
     return JsonResponse({
