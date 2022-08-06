@@ -1,3 +1,7 @@
 {
-    "python.defaultInterpreterPath": "/home/iftakhar/.local/share/virtualenvs/backend-l_PM2mZV/bin/python"
+  // Setting pipenv path
+  "python.defaultInterpreterPath": "/home/iftakhar/.local/share/virtualenvs/backend-l_PM2mZV/bin/python",
+  "editor.tabSize": 4,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": true
 }

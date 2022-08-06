@@ -1,0 +1,92 @@
+{
+  "version": "2.0.0",
+  "presentation": {
+    "echo": false,
+    "reveal": "never",
+    "focus": false,
+    "panel": "dedicated",
+    "showReuseMessage": true
+  },
+  "tasks": [
+    {
+      "label": "Lunch Development Tasks",
+      "icon": {
+        "id": "broadcast",
+        "color": "terminal.ansiYellow",
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "dependsOn": ["DRF Backend Dev Server", "Vite Dev Server", "Tailwind CSS Watcher"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+    },
+
+    {
+      "label": "DRF Backend Dev Server",
+      "icon": {
+        "id": "layers-active",
+        "color": "terminal.ansiGreen"
+      },
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "command": "pipenv run python manage.py runserver",
+      "problemMatcher": [],
+      // Mark as a background task to avoid the spinner animation on the terminal tab
+      "isBackground": true,
+      // Create the tasks in a terminal group
+      "presentation": {
+        "group": "development"
+      }
+    },
+    {
+      "label": "Vite Dev Server",
+      "icon": {
+        "id": "globe",
+        "color": "terminal.ansiMagenta"
+      },
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "group": "development"
+      }
+    },
+    {
+      "label": "Tailwind CSS Watcher",
+      "icon": {
+        "id": "symbol-customcolor",
+        "color": "terminal.ansiCyan"
+      },
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "command": "npm run tw:watch",
+      "isBackground": true,
+      "presentation": {
+        "group": "development"
+      }
+    },
+    {
+      "label": "Build Frontend",
+      "icon": {
+        "id": "archive",
+        "color": "terminal.ansiYellow"
+      },
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/frontend"
+      },
+      "command": "npm run build"
+    }
+  ]
+}
