@@ -1,3 +1,6 @@
+
+**/src/tailwind.css
+**/public/tailwind.css
 **/user_uploaded_media_files
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,node,django,react
