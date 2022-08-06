@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+nav li a.active{
+    @apply bg-red-800 text-white;
+}
+nav li a{
+    @apply hover:bg-red-300;
+}
+
