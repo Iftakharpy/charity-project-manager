@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run tw:b && tsc && vite build",
+    "build": "npm run tw:build && tsc && vite build && npm run tw:clean",
     "preview": "vite preview",
-    "tw:w": "tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css --watch",
-    "tw:b": "tailwindcss -i ./src/tailwind-input.css -o ./public/tailwind.css --minify"
+    "tw:watch": "tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css --watch",
+    "tw:build": "tailwindcss -i ./src/tailwind-input.css -o ./public/tailwind.css --minify",
+    "tw:clean": "rm ./src/tailwind.css ./public/tailwind.css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
