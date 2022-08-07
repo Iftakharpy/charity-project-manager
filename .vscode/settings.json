@@ -3,5 +3,18 @@
   "python.defaultInterpreterPath": "/home/iftakhar/.local/share/virtualenvs/backend-l_PM2mZV/bin/python",
   "editor.tabSize": 4,
   "editor.insertSpaces": false,
-  "editor.detectIndentation": true
+  "editor.detectIndentation": true,
+  "editor.experimental.stickyScroll.enabled": true,
+  
+  // Tailwind specific settings
+  "tailwindCSS.includeLanguages": {
+    "plaintext": "html"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true,
+  },
+  "tailwindCSS.emmetCompletions": true,
 }
