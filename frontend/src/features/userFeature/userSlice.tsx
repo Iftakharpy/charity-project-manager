@@ -1,26 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User, UserState } from './userTypes'
 
 
-interface User{
-    isLoggedIn: boolean;
-    profile: null | {
-        id: number;
-        first_name: string;
-        last_name: string;
-        email: string;
-        phone_number: string;
-        profile_picture: string;
-        groups: string[];
-        user_permissions: string[];
-        is_active: boolean;
-        is_staff: boolean;
-        is_superuser: boolean;
-        last_login: string;
-        date_joined: string;
-    };
-}
-const initialUserState = {isLoggedIn:false, profile: null} as User
-
+const initialUserState = { isLoggedIn: false, profile: null } as UserState
 
 export const userSlice = createSlice({
     name: 'user',

@@ -1,9 +1,12 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-import {API_ROOT} from '../config'
-
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { API_ROOT } from '../config'
+import { User, LoginCredentials, UserEndpointResponse } from '../../features/userFeature/userTypes'
 
 export const api = createApi({
     reducerPath: 'api',
+    keepUnusedDataFor: 1,
+    refetchOnReconnect: true,
+    refetchOnMountOrArgChange:true,
     baseQuery: fetchBaseQuery({
         baseUrl: API_ROOT,
         credentials: 'include',
@@ -11,7 +14,7 @@ export const api = createApi({
     }),
     endpoints: (builder) => ({
         // User related endpoints
-        loginUser: builder.mutation({
+        loginUser: builder.mutation<User, LoginCredentials>({
             query: ({email, password}) => ({
                 url: 'users/login/',
                 method: 'POST',
@@ -19,11 +22,11 @@ export const api = createApi({
             }),
         }),
 
-        logoutUser: builder.query({
+        logoutUser: builder.query<unknown, void>({
             query: ()=>'users/logout/'
         }),
-        
-        getUserProfile: builder.query({
+
+        getUserProfile: builder.query<UserEndpointResponse, void>({
             query: () => 'users/details/'
         }),
     })
