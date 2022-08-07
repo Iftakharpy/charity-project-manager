@@ -1,11 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
-nav li a.active{
-    @apply bg-red-800 text-white;
-}
-nav li a{
-    @apply hover:bg-red-300;
+
+@layer base{
+    h1{
+        @apply text-4xl;
+    }
+    h2{
+        @apply text-3xl;
+    }
+    h3{
+        @apply text-2xl;
+    }
+    h3{
+        @apply text-xl;
+    }
+    h4{
+        @apply text-lg;
+    }
+    h5{
+        @apply text-base;
+    }
+    h6{
+        @apply text-sm;
+    }
+
+    body{
+        position: absolute;
+        min-width: 100vw;
+        min-height: 100vh;
+    }
+    pre{
+        white-space: pre-wrap;
+        line-break: normal
+    }
 }
 
+@layer components{
+    .btn {
+        @apply px-3 py-2 border-2 border-gray-600;
+    }
+}
