@@ -26,20 +26,199 @@
     h6{
         @apply text-sm;
     }
-
-    body{
-        position: absolute;
-        min-width: 100vw;
-        min-height: 100vh;
-    }
     pre{
         white-space: pre-wrap;
-        line-break: normal
+        line-break: normal;
+    }
+    ol, ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        display: inline-block;
+        @apply px-2 py-1 rounded-md;
+    }
+    input, textarea{
+        @apply px-3 py-2 border rounded-md;
+    }
+    input:focus, textarea:focus{
+        outline-color: var(--border-color);
+    }
+
+    :root{
+        --accent-color: theme(colors.indigo.600);
+        --accent-secondary-color: theme(colors.emerald.600);
+        --accent-white-color: theme(colors.slate.50);
+        --accent-lightest-color: theme(colors.slate.100);
+        --accent-lighter-color: theme(colors.slate.200);
+        --accent-light-color: theme(colors.slate.300);
+        --accent-dark-color: theme(colors.slate.600);
+        --accent-darker-color: theme(colors.slate.700);
+        --accent-darkest-color: theme(colors.slate.800);
+        --accent-black-color: theme(colors.slate.900);
+
+        --react-icon-color: var(--accent-color);
+        --react-icon-size: 2.25em;
+
+        --header-min-width: calc(var(--sidebar-width) - var(--header-padding-x)*2);
+        --header-width: 100vw;
+        --header-max-width: 65em;
+        --header-inner-content-height: 3em;
+        --header-height-total: calc(var(--header-inner-content-height) + var(--header-padding-y)*2);
+        --header-padding-x: theme(spacing.8);
+        --header-padding-y: theme(spacing.2);
+        --header-background-color: transparent;
+        --header-background-blur-radius: 8px;
+        --header-background-brightness-value: 1.02;
+        --header-border-color: var(--accent-color);
+        --header-border-size: 2px;
+        
+        
+        --sidebar-width: 20em;
+        --sidebar-height: calc(100vh - var(--header-height-total));
+        --sidebar-background-color: transparent;
+        --sidebar-background-blur-radius: 8px;
+        --sidebar-background-brightness-value: 1.02;
+        --sidebar-border-color: var(--accent-color);
+        --sidebar-border-size: 2px;
+
+        --footer-min-height: 3em;
+        --main-section-min-height: calc(100vh - var(--header-height-total));
+        --main-content-min-height: calc(var(--main-section-min-height) - var(--footer-min-height));
+    }
+    
+    .react-icons{
+        width: var(--react-icon-size);
+        height: var(--react-icon-size);
+        color: inherit;
+    }
+    .navbar-link{
+        display: inline-flex;
+        gap: var(--navbar-icon-and-text-gap);
+        align-items: center;
+        max-width: max-content;
+    }
+
+    body, .root, .layout{
+        position: relative;
+        min-width: 100vw;
+        min-height: 100vh;
+        color: var(--accent-color);
+        background-color: var(--accent-light-color-color);
+        overflow-x: hidden;
+    }
+    .top-section, .header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .header{
+        flex-grow: 1;
+        justify-content: space-between;
+        min-width: var(--header-mix-width);
+        max-width: var(--header-max-width);
+    }
+    .top-section{
+        position: fixed;
+
+        width: var(--header-width);
+        height: var(--header-height-total);
+        border-bottom: var(--header-border-size) solid var(--header-border-color);
+        padding: var(--header-padding-y) var(--header-padding-x);
+
+        background-color: var(--header-background-color);
+        backdrop-filter: blur(var(--header-background-blur-radius)) brightness(var(--header-background-brightness-value));
+    }
+    .sidebar{
+        position: fixed;
+        top: var(--header-height-total);
+        left: 0;
+        
+        width: var(--sidebar-width);
+        height: var(--sidebar-height);
+        background-color: var(--sidebar-background-color);
+        backdrop-filter: blur(var(--sidebar-background-blur-radius)) brightness(var(--sidebar-background-brightness-value));
+        border-right: var(--sidebar-border-size) solid var(--sidebar-border-color);
+
+        overflow-y: auto;
+        overflow-x: hidden;
+        transition: all 300ms ease-in-out;
+    }
+    .sidebar, .top-section{
+        @apply rounded-md;
+    }
+    .sidebar.open{
+        transform: translateX(0%);
+    }
+    .sidebar.close{
+        transform: translateX(-100%);
+    }
+
+    .bottom-section{
+        margin-top: var(--header-height-total);
+        position: absolute;
+    }
+    .bottom-section, .main-section{
+        width: 100vw;
+        min-height: var(--main-section-min-height);
+    }
+    .main-content{
+        min-height: var(--main-content-min-height);
+    }
+    .footer{
+        display: grid;
+        place-items: center;
+        min-height: var(--footer-min-height);
+    }
+    .top-section, .sidebar{
+        border: 0;
+    }
+
+    .top-section{
+        @apply shadow-sm shadow-indigo-600/30;
+    }
+    .footer{
+        @apply shadow-inner shadow-indigo-600/30;
+    }
+
+    .sidebar{
+        @apply shadow-sm shadow-indigo-600/50 p-8;
+    }
+    .sidebar-nav-items-container{
+        display: grid;
+        gap: .75em;
+
+    }
+    .sidebar-nav-link{
+        display: flex;
+        gap: .75em;
+        align-items: center;
+        justify-content: left;
+        @apply py-2 px-3;
+    }
+    .sidebar-nav-link .react-icons{
+        flex-shrink: 0;
+    }
+    .nav-link-text{
+        @apply text-xl font-extrabold;
+    }
+    .sidebar-nav-link.active, .sidebar-nav-link:hover{
+        transition: all 200ms;
+        color: #fff;
+        @apply bg-indigo-500;
     }
 }
 
+
 @layer components{
     .btn {
-        @apply px-3 py-2 border-2 border-gray-600;
+        transition: all 200ms;
+        border-color: var(--accent-color);
+        @apply px-3 py-2 rounded-md border text-lg font-semibold cursor-pointer;
+    }
+    .btn:hover{
+        color: var(--accent-white-color);
+        background-color: var(--accent-color);
     }
 }
