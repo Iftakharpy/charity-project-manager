@@ -12,18 +12,21 @@
       "label": "Lunch Development Tasks",
       "icon": {
         "id": "broadcast",
-        "color": "terminal.ansiYellow",
+        "color": "terminal.ansiYellow"
       },
       "runOptions": {
         "runOn": "folderOpen"
       },
-      "dependsOn": ["DRF Backend Dev Server", "Vite Dev Server", "Tailwind CSS Watcher"],
+      "dependsOn": [
+        "DRF Backend Dev Server",
+        "Vite Dev Server",
+        "Tailwind CSS Watcher"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true
-      },
+      }
     },
-
     {
       "label": "DRF Backend Dev Server",
       "icon": {
@@ -36,9 +39,7 @@
       },
       "command": "pipenv run python manage.py runserver",
       "problemMatcher": [],
-      // Mark as a background task to avoid the spinner animation on the terminal tab
       "isBackground": true,
-      // Create the tasks in a terminal group
       "presentation": {
         "group": "development"
       }
@@ -74,7 +75,8 @@
       "isBackground": true,
       "presentation": {
         "group": "development"
-      }
+      },
+      "problemMatcher": []
     },
     {
       "label": "Build Frontend",
