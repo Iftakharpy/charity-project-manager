@@ -39,11 +39,37 @@
         display: inline-block;
         @apply px-2 py-1 rounded-md;
     }
-    input, textarea{
-        @apply px-3 py-2 border rounded-md;
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='number'],
+    input[type='url'],
+    input[type='date'],
+    input[type='datetime-local'],
+    input[type='month'],
+    input[type='week'],
+    input[type='time'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='checkbox'],
+    input[type='radio'],
+    select,
+    select[multiple],
+    textarea{
+        border-color: var(--accent-light-color);
+        @apply px-2 py-2 border-2 rounded-md focus:border-indigo-400 w-full;
     }
-    input:focus, textarea:focus{
-        outline-color: var(--border-color);
+    button[type='submit']{
+        @apply btn w-full;
+    }
+    .form{
+        @apply max-w-xs mx-auto;
+    }
+    .form-input-container{
+        @apply flex justify-center flex-col gap-1 my-3;
+    }
+    .form-input-container label{
+        @apply text-lg font-semibold;
     }
 
     :root{
@@ -63,7 +89,7 @@
 
         --header-min-width: calc(var(--sidebar-width) - var(--header-padding-x)*2);
         --header-width: 100vw;
-        --header-max-width: 65em;
+        --header-max-width: 80em;
         --header-inner-content-height: 3em;
         --header-height-total: calc(var(--header-inner-content-height) + var(--header-padding-y)*2);
         --header-padding-x: theme(spacing.8);
@@ -83,15 +109,38 @@
         --sidebar-border-color: var(--accent-color);
         --sidebar-border-size: 2px;
 
-        --footer-min-height: 3em;
         --main-section-min-height: calc(100vh - var(--header-height-total));
         --main-content-min-height: calc(var(--main-section-min-height) - var(--footer-min-height));
+        --main-content-max-width: var(--header-max-width);
+        --main-content-padding-x: var(--header-padding-x);
+        --main-content-padding-y: var(--header-padding-y);
+
+        --footer-min-height: 3em;
     }
-    
-    .react-icons{
+
+    :where(.react-icons){
         width: var(--react-icon-size);
         height: var(--react-icon-size);
         color: inherit;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    :where(.spinner-large, .spinner, .spinner-small){
+        animation: spin 900ms infinite linear;
+    }
+    :where(.spinner-large){
+        height: calc(var(--react-icon-size)*2.25);
+        width: calc(var(--react-icon-size)*2.25);
+    }
+    :where(.spinner){
+        height: calc(var(--react-icon-size)*1.75);
+        width: calc(var(--react-icon-size)*1.75);
+    }
+    :where(.spinner-small){
+        height: calc(var(--react-icon-size)*1);
+        width: calc(var(--react-icon-size)*1);
     }
     .navbar-link{
         display: inline-flex;
@@ -163,8 +212,14 @@
         width: 100vw;
         min-height: var(--main-section-min-height);
     }
+    .main-content-wrapper{
+        padding: 0 var(--main-content-padding-x);
+    }
     .main-content{
         min-height: var(--main-content-min-height);
+        max-width: var(--main-content-max-width);
+        padding: var(--main-content-padding-y) 0;
+        margin: auto;
     }
     .footer{
         display: grid;
@@ -195,7 +250,7 @@
         gap: .75em;
         align-items: center;
         justify-content: left;
-        @apply py-2 px-3;
+        @apply py-2 px-3 bg-indigo-50/[0.65];
     }
     .sidebar-nav-link .react-icons{
         flex-shrink: 0;
@@ -208,6 +263,12 @@
         color: #fff;
         @apply bg-indigo-500;
     }
+
+    .not-found-img{
+        min-height: 100%;
+        max-height: 75vh;
+        margin: auto auto;
+    }
 }
 
 
@@ -215,7 +276,7 @@
     .btn {
         transition: all 200ms;
         border-color: var(--accent-color);
-        @apply px-3 py-2 rounded-md border text-lg font-semibold cursor-pointer;
+        @apply px-2 py-2 rounded-md border text-lg font-semibold cursor-pointer bg-indigo-50/[0.65];
     }
     .btn:hover{
         color: var(--accent-white-color);
