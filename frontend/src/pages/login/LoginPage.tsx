@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { InputComponent, SelectComponent, TextareaComponent } from '../../components/input/InputComponent'
 import { ButtonComponent } from '../../components/button/ButtonComponent'
+import { FormComponent } from '../../components/form/FormComponent'
 
 
 export function LoginPage() {
@@ -15,7 +16,7 @@ export function LoginPage() {
 		navigator('/')
 	}
 	return (
-		<form className='form login-form'>
+		<FormComponent className='login-form'>
 			<InputComponent labelText="Email" type="email" name='username' value={'ab@cd.com'} />
 			<InputComponent labelText="Password" type="password" name='password' value={'abcd'} />
 			<ButtonComponent buttonText='Login'
@@ -25,6 +26,6 @@ export function LoginPage() {
 					toast.info("Trying to login!"); 
 				}}
 			/>
-		</form>
+		</FormComponent>
 	)
 }
