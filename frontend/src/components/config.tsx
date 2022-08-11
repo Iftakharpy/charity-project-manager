@@ -4,5 +4,7 @@ export const CLASS_NAMES = {
 	input: 'form-input',
 	textarea: 'form-textarea',
 	select: 'form-select',
-	button: 'form-button btn'
+	button: 'form-button btn',
+	form: 'form',
+	spinner: 'spinner'
 }
