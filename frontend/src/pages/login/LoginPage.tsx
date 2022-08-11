@@ -3,6 +3,9 @@ import { useAppSelector } from '../../app/hooks'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
+import { InputComponent, SelectComponent, TextareaComponent } from '../../components/input/InputComponent'
+import { ButtonComponent } from '../../components/button/ButtonComponent'
+
 
 export function LoginPage() {
 	const {isLoggedIn, profile} = useAppSelector((state)=>state.user.value)
@@ -13,20 +16,15 @@ export function LoginPage() {
 	}
 	return (
 		<form className='form login-form'>
-			<div className='form-input-container'>
-				<label htmlFor="username" >Email:</label>
-				<input name='username' type="email" value='ab@cd.com' />
-			</div>
-			<div className='form-input-container'>
-				<label htmlFor="password">Password:</label>
-				<input name='password' type="password" placeholder='abcd' value={'abcd'} />
-			</div>
-			<div className='form-input-container'>
-				<button type='submit' onClick={(e)=>{
+			<InputComponent labelText="Email" type="email" name='username' value={'ab@cd.com'} />
+			<InputComponent labelText="Password" type="password" name='password' value={'abcd'} />
+			<ButtonComponent buttonText='Login'
+				type='submit'
+				onClick={(e)=>{
 					e.preventDefault()
 					toast.info("Trying to login!"); 
-				}}>Login</button>
-			</div>
+				}}
+			/>
 		</form>
 	)
 }
