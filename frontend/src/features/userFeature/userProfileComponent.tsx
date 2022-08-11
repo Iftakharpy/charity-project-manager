@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useGetUserProfileQuery, useLoginUserMutation } from '../../app/services/api'
 
 
 export function UserProfileComponent() {
 	const [loginUser, { isLoading, isError, data, error}] = useLoginUserMutation()
 
-	if (data==undefined && error==undefined && !isLoading) loginUser({email:'ab@cd.com', password:'abcd'})
+	useEffect(()=>{
+		if (data==undefined && error==undefined && !isLoading) loginUser({email:'ab@cd.com', password:'abcd'})
+	}, [])
 
 	if (isLoading) return <h1>Loading data</h1>
 	if (isError) return <h1>Error while loading data</h1>
