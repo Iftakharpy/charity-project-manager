@@ -6,7 +6,7 @@ import { BaseLayout } from './layouts/BaseLayout'
 
 import { UserProfileComponent } from './features/userFeature/userProfileComponent'
 import { LoginPage } from './pages/login/LoginPage';
-import { NotFoundPage } from './pages/NotFound/NotFoundPage';
+import { NotFoundPage } from './pages/notFound/NotFoundPage';
 
 
 import './tailwind.css'
