@@ -20,7 +20,17 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <PersistGate loading={null} persistor={persistedStore}>
         <BrowserRouter>
           <App/>
-          <ToastContainer autoClose={7000} newestOnTop draggable={false} closeButton={<RiCloseCircleFill size={28}/>} />
+          <ToastContainer
+            autoClose={7000}
+            newestOnTop
+            draggable={false}
+            closeButton={
+              ({closeToast})=>(
+                <span onClick={closeToast}>
+                  <RiCloseCircleFill size={28}/>
+                </span>
+              )}
+            />
         </BrowserRouter>
       </PersistGate>
     </Provider>
