@@ -1,5 +1,5 @@
 import React from 'react'
-import { NotFound } from './NotFound.svg'
+import NotFound from './NotFound.svg'
 
 
 export function NotFoundPage() {
