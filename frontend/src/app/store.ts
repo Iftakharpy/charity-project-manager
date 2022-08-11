@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { userReducer } from "../features/userFeature/userSlice"
+import { navigationReducer } from "../features/navigationBar/navigationBarSlice";
 
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from "redux-persist/lib/storage";
@@ -11,6 +12,7 @@ import { api } from "./services/api";
 
 const combinedReducers = combineReducers({
     user: userReducer,
+    navigation: navigationReducer,
     [api.reducerPath]: api.reducer,
 })
 
