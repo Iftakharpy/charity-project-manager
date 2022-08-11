@@ -1,14 +1,6 @@
 import React from 'react'
 import type { InputProps, SelectProps, TextareaProps } from './InputTypes'
-
-
-const CLASS_NAMES = {
-	container: 'form-input-container',
-	label: 'form-label',
-	input: 'form-input',
-	textarea: 'form-textarea',
-	select: 'form-select'
-}
+import { CLASS_NAMES } from '../config'
 
 
 export function InputComponent(props:InputProps) {
