@@ -5,7 +5,7 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   safelist: [
-    {pattern: /Toastify*/},
+    {pattern: /Toastify.*/},
   ],
   content: [
     "./src/**/*.{html,js,jsx,tsx}",
@@ -15,8 +15,10 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require('@tailwindcss/forms')({
+      strategy: 'base'
+    }),
     require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
   ],

@@ -59,6 +59,12 @@
         border-color: var(--accent-light-color);
         @apply px-2 py-2 border-2 rounded-md focus:border-indigo-400 w-full;
     }
+    /* .form-input,
+    .form-select,
+    .form-textarea,
+    .form-multiselect{
+        specific styles should go here 
+    } */
     button[type='submit']{
         @apply btn w-full;
     }
