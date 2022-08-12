@@ -5,7 +5,6 @@ import { FormProps } from './FormTypes';
 
 
 export function FormComponent({ formHeaderText, formHeaderProps, ...props}:FormProps) {
-	console.log(formHeaderText)
   	return (
 		<form {...props}
 			className={props.className ? `${props.className} ${CLASS_NAMES.form}`: CLASS_NAMES.form}
