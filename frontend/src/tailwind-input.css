@@ -57,6 +57,7 @@
     select[multiple],
     textarea{
         border-color: var(--accent-light-color);
+        min-width: 10em;
         @apply px-2 py-2 border-2 rounded-md focus:border-indigo-400 w-full;
     }
     /* .form-input,
@@ -69,13 +70,16 @@
         @apply btn w-full;
     }
     .form{
-        @apply max-w-xs mx-auto;
+        @apply max-w-md mx-auto border-2 p-4 rounded-lg grid gap-3.5;
     }
     .form-input-container{
-        @apply flex justify-center flex-col gap-1 my-3;
+        @apply flex justify-center flex-col gap-1;
     }
     .form-input-container label{
         @apply text-lg font-semibold;
+    }
+    .form-header{
+        @apply text-xl text-center font-bold my-5;
     }
 
     :root{
