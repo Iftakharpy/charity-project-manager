@@ -41,8 +41,8 @@ def user_login(request: HttpRequest):
         return JsonResponse({
             'success': False,
             'errors': {
-                'password': ['Invalid credentials!'],
-                }
+                'common': ['Invalid credentials!'],
+            }
         }, status=400)
 
     login(request, user)
