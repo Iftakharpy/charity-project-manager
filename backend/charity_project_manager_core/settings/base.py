@@ -141,6 +141,7 @@ MEDIA_ROOT = BASE_DIR / 'user_uploaded_media_files'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+SESSION_COOKIE_AGE = 12*60*60 # max session time 12 hours
 AUTH_USER_MODEL = 'users.CustomUserModel'
 LOGIN_REDIRECT_URL = 'users:details'
 LOGOUT_REDIRECT_URL = 'users:login'

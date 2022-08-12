@@ -50,7 +50,10 @@ def user_login(request: HttpRequest):
 
     return JsonResponse({
                 'success': True,
-                'data': serializer.data
+                'data': {
+                    'session_expires_at': request.session.get_expiry_date(),
+                    **serializer.data
+                }
             })
 
 
@@ -64,12 +67,15 @@ def user_logout(request):
 
 @require_http_methods(['GET'])
 @login_required
-def user_details(request):
+def user_details(request:HttpRequest):
     user = request.user
     serializer = CustomUserSerializer(user)
     return JsonResponse({
                 'success': True,
-                'data': serializer.data
+                'data': {
+                    'session_expires_at': request.session.get_expiry_date(),
+                    **serializer.data
+                }
             })
 
 
