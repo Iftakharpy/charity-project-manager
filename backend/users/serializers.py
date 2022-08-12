@@ -1,9 +1,11 @@
-from rest_framework.serializers import ModelSerializer
+from django.http.request import HttpRequest
+from rest_framework import serializers
 
 from .models import CustomUserModel
 
 
-class CustomUserSerializer(ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = CustomUserModel
         read_only_fields = ['password', 'is_active', 'is_staff', 'is_superuser',

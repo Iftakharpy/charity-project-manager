@@ -46,7 +46,7 @@ def user_login(request: HttpRequest):
         }, status=400)
 
     login(request, user)
-    serializer = CustomUserSerializer(user)
+    serializer = CustomUserSerializer(user, context={'request': request})
 
     return JsonResponse({
                 'success': True,
@@ -69,7 +69,7 @@ def user_logout(request):
 @login_required
 def user_details(request:HttpRequest):
     user = request.user
-    serializer = CustomUserSerializer(user)
+    serializer = CustomUserSerializer(user, context={'request': request})
     return JsonResponse({
                 'success': True,
                 'data': {
