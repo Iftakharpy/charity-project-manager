@@ -9,10 +9,13 @@ import { useAppSelector, useAppDispatch } from '../app/hooks'
 
 export function HeaderComponent() {
 	const { isLoggedIn } = useAppSelector((state) => state.user.value)
-	const { isNavbarOpen } = useAppSelector((state) => state.navigation.value)
+	const { isNavbarOpen, closeNavbarOnHeaderClick } = useAppSelector((state) => state.navigation.value)
 	const dispatch = useAppDispatch()
 
- 	return (<header id='header' className="header">
+ 	return (<header id='header' className="header" onClick={(e)=>{
+		const target = e.target as HTMLElement
+		if (closeNavbarOnHeaderClick && target.id==='header') dispatch(closeNavbar())
+	}}>
 			<button
 				className='btn p-1 h-12 flex justify-center items-center'
 				onClick={()=>isNavbarOpen ? dispatch(closeNavbar()) : dispatch(openNavbar())}>

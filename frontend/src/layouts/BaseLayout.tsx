@@ -9,7 +9,7 @@ import { useAppSelector, useAppDispatch } from '../app/hooks'
 
 
 export function BaseLayout() {
-	const { isNavbarOpen } = useAppSelector((state)=>state.navigation.value);
+	const { isNavbarOpen, closeNavbarOnMainContentClick } = useAppSelector((state)=>state.navigation.value);
 	const dispatch = useAppDispatch()
 
   	return (
@@ -17,7 +17,9 @@ export function BaseLayout() {
 			<section className='bottom-section'>
 				<div className='main-section'>
 						<div className='main-content-wrapper'>
-							<main id='main-content' className='main-content' onClick={()=>dispatch(closeNavbar())}>
+							<main id='main-content' className='main-content' onClick={(e)=>{
+								if (closeNavbarOnMainContentClick) dispatch(closeNavbar())
+								}}>
 								{/* Page specific contents goes here */}
 								<Outlet/>
 							</main>
