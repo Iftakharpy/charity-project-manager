@@ -17,11 +17,15 @@ export interface User{
 	is_superuser: boolean;
 	last_login: string;
 	date_joined: string;
+	session_expires_at: string;
 }
 
-export interface UserEndpointResponse{
-	success: boolean;
-    data: User
+export type UserEndpointResponse =  {
+	success: true;
+    data: User;
+} | {
+	success: false;
+	errors: {[key:string]: string[]}
 }
 
 export type UserState = {

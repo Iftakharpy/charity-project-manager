@@ -78,6 +78,13 @@
     .form-input-container label{
         @apply text-lg font-semibold;
     }
+    .form-input-errors, .form-errors{
+        @apply text-red-500;
+    }
+    .form-errors{
+        @apply text-lg font-semibold;
+    }
+
     .form-header{
         @apply text-xl text-center font-bold my-5;
     }
@@ -139,6 +146,7 @@
     }
     :where(.spinner-large, .spinner, .spinner-small){
         animation: spin 900ms infinite linear;
+        @apply mx-auto;
     }
     :where(.spinner-large){
         height: calc(var(--react-icon-size)*2.25);

@@ -1,37 +1,43 @@
 export type InputProps = React.ComponentPropsWithoutRef<'input'> & ({
-	labelText: string,
+	labelText: string;
 	name: string;
+	errors?: string[];
 	labelProps?: Omit<React.ComponentPropsWithoutRef<'label'>, 'children'>;
 	containerProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 } | {
-	labelText: undefined,
+	labelText: undefined;
 	name: string;
+	errors?: string[];
 	labelProps?: React.ComponentPropsWithoutRef<'label'>;
 	containerProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 })
 
 
 export type SelectProps = React.ComponentPropsWithoutRef<'select'> & ({
-	labelText: string,
+	labelText: string;
 	name: string;
+	errors?: string[];
 	labelProps?: Omit<React.ComponentPropsWithoutRef<'label'>, 'children'>;
 	containerProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 } | {
-	labelText: undefined,
+	labelText: undefined;
 	name: string;
+	errors?: string[];
 	labelProps?: React.ComponentPropsWithoutRef<'label'>;
 	containerProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 })
 
 
 export type TextareaProps = React.ComponentPropsWithoutRef<'textarea'> & ({
-	labelText: string,
+	labelText: string;
 	name: string;
+	errors?: string[];
 	labelProps?: Omit<React.ComponentPropsWithoutRef<'label'>, 'children'>;
 	containerProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 } | {
-	labelText: undefined,
+	labelText: undefined;
 	name: string;
+	errors?: string[];
 	labelProps?: React.ComponentPropsWithoutRef<'label'>;
 	containerProps?: Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 })

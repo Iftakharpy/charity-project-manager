@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { RiCloseCircleFill } from 'react-icons/ri'
 import { TiThMenu } from 'react-icons/ti'
 
@@ -8,6 +8,7 @@ import { useAppSelector, useAppDispatch } from '../app/hooks'
 
 
 export function HeaderComponent() {
+	const { isLoggedIn } = useAppSelector((state) => state.user.value)
 	const { isNavbarOpen } = useAppSelector((state) => state.navigation.value)
 	const dispatch = useAppDispatch()
 
@@ -17,6 +18,12 @@ export function HeaderComponent() {
 				onClick={()=>isNavbarOpen ? dispatch(closeNavbar()) : dispatch(openNavbar())}>
 				{isNavbarOpen?<RiCloseCircleFill/>:<TiThMenu/>}
 			</button>
-			<NavLink className='btn' to='/login/'>Login</NavLink>
+			{
+				isLoggedIn ?
+					<Link className='btn' to='/logout/'>Logout</Link>
+					:
+					<NavLink className='btn' to='/login/'>Login</NavLink>
+			}
+			
 		</header>)
 	}

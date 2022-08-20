@@ -6,6 +6,8 @@ export const CLASS_NAMES = {
 	select: 'form-select',
 	button: 'form-button btn',
 	form: 'form',
+	formErrors: 'form-errors',
 	formHeader: 'form-header',
+	formInputErrors: 'form-input-errors',
 	spinner: 'spinner',
 }

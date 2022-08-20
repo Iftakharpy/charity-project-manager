@@ -10,6 +10,7 @@ import { NotFoundPage } from './pages/notFound/NotFoundPage';
 
 
 import './tailwind.css'
+import LogoutPage from './pages/logout/LogoutPage';
 
 
 export function App() {
@@ -19,6 +20,7 @@ export function App() {
         <Route index element={<UserProfileComponent/>}/>
         <Route path='about/' element={"about"}/>
         <Route path='login/' element={<LoginPage/>}/>
+        <Route path='logout/' element={<LogoutPage/>}/>
         <Route path='*' element={<NotFoundPage/>}/>
       </Route>
     </Routes>
